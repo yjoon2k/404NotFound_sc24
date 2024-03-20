@@ -53,7 +53,7 @@ time.sleep(20)
 wait = WebDriverWait(driver, 35)
 clicked_button = None
 #시작 페이지
-start_page=128
+start_page=1
 while True:
     
     time.sleep(4)
