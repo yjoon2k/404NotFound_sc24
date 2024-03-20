@@ -50,19 +50,17 @@ driver.get(url3)
 time.sleep(20)
 
 #excel 파일 다운, 다운 전에 배열을 200개씩 보기로 바꿔주세요
-
 wait = WebDriverWait(driver, 35)
 clicked_button = None
 #시작 페이지
-start_page=1
-wait = WebDriverWait(driver, 35)
-clicked_button = None
-#시작 페이지
-start_page=1
+start_page=128
 while True:
-    excel_button_element = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.btn-type4.btn-iconback.excel')))
+    
+    time.sleep(4)
+    
     
     try:
+        excel_button_element = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.btn-type4.btn-iconback.excel')))
         # 클릭한 버튼이 이전에 클릭한 버튼과 같지 않은 경우에만 클릭
         if clicked_button != excel_button_element:
             excel_button_element.click()
@@ -72,12 +70,18 @@ while True:
         print("Too fast, waiting for 15 seconds before trying again... in excel")
         time.sleep(15)
         continue
+        
+    except ElementNotInteractableException:
+        print("Too fast, waiting for 15 seconds before trying again... in excel")
+        time.sleep(15)
+        continue
     
     except TimeoutException:
         print("Timed out waiting for excel button")
         continue
 
-    next_button_element = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'button.table-forward[name="next"]')))
+        
+    time.sleep(8)
     try:
         # 클릭한 버튼이 이전에 클릭한 버튼과 같지 않은 경우에만 클릭
         next_button_element = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'button.table-forward[name="next"]')))
@@ -85,10 +89,16 @@ while True:
             next_button_element.click()
             # 클릭한 버튼 업데이트            
             clicked_button = next_button_element
-    except ElementClickInterceptedException, ElementNotInteractableException:
+    except ElementClickInterceptedException:
         print("Too fast, waiting for 15 seconds before trying again... in next")
         time.sleep(15)
         continue
+        
+    except ElementNotInteractableException:
+        print("Too fast, waiting for 15 seconds before trying again... in next")
+        time.sleep(15)
+        continue
+        
     except TimeoutException:
         print("Timed out waiting for next button")
         continue
@@ -97,7 +107,6 @@ while True:
     if start_page==262:
         break
     start_page+=1
-
 
 
 

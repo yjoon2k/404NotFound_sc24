@@ -56,6 +56,7 @@ driver.get(url3)
 #262
 #1047
 
+time.sleep(20)
 
 
 wait = WebDriverWait(driver, 40)
@@ -65,11 +66,13 @@ start_page=1
 while True:
 
     
-    image_button_element = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.btn-type4.btn-iconback.image')))
+    
     try:
-        #print('try_download_click')
+        print('try_download_click')
+        time.sleep(4)
+        image_button_element = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.btn-type4.btn-iconback.image')))
         if clicked_button != image_button_element:
-            #print('download_click')
+            print('download_click')
             image_button_element.click()
             clicked_button = image_button_element
     except ElementNotInteractableException:
@@ -88,16 +91,17 @@ while True:
     
 
     
-    time.sleep(5)
+    time.sleep(8)
     try:
         # 클릭한 버튼이 이전에 클릭한 버튼과 같지 않은 경우에만 클릭
         next_button_element = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'button.table-forward[name="next"]')))
-        #print('try_next_click')
+        print('try_next_click')
         if clicked_button != next_button_element:
-            #print('next_click')
+            print('next_click')
             next_button_element.click()
             # 클릭한 버튼 업데이트            
             clicked_button = next_button_element
+            time.sleep(8)
     except ElementNotInteractableException:
         print("Too fast, waiting for 10 seconds before trying again... in next")
         time.sleep(10)
@@ -113,7 +117,7 @@ while True:
         continue
     
     print(f'{start_page}done')
-    if start_page==262:
+    if start_page== 262:
         
         break
     start_page+=1
