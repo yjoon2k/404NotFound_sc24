@@ -18,8 +18,8 @@ jobs:
           java-version: 21
 
       - name: Grant execute permission for gradlew
-        run: chmod +x ./gradlew
+        run: chmod +x ./picnic/gradlew
         shell: bash
 
       - name: Build and Test
-        run: ./gradlew build test
+        run: ./picnic/gradlew build test
