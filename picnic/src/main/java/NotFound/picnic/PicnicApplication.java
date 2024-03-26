@@ -8,7 +8,7 @@ public class PicnicApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PicnicApplication.class, args);
-		// for test
+		// for test apply
 	}
 
 }
